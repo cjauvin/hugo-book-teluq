@@ -92,19 +92,19 @@ hugo server --minify --theme hugo-book
 
 ## Menu
 
-By default, the theme will render pages from the `content/docs` section as a menu in a tree structure.  
+By default, the theme will render pages from the `content/docs` section as a menu in a tree structure.
 You can set `title` and `weight` in the front matter of pages to adjust the order and titles in the menu, as well as other parameters to hide or alter urls in the menu. You can choose which folder to use for generating menu with `BookSection` configuration parameter.
 
 ## Blog
 
-A simple blog is supported in the section `posts`.  
+A simple blog is supported in the section `posts`.
 A blog is not the primary usecase of this theme, so it has only minimal features.
 
 ## Configuration
 
 ### Site Configuration
 
-There are a few configuration options that you can add to your `hugo.toml` file.  
+There are a few configuration options that you can add to your `hugo.toml` file.
 You can also see the `yaml` example [here](https://github.com/alex-shpak/hugo-book/blob/master/exampleSite/hugo.yaml).
 
 ```toml
@@ -186,6 +186,9 @@ disableKinds = ['taxonomy', 'taxonomyTerm']
   # /!\ This is an experimental feature, might be removed or changed at any time
   # (Optional, experimental, default false) Enables service worker that caches visited pages and resources for offline use.
   BookServiceWorker = true
+
+  # This feature adds prev/next nav buttons to every page
+  BookNav = true
 ```
 
 ### Multi-Language Support
@@ -306,7 +309,7 @@ If you want lower maintenance, use one of the released versions. If you want to 
 
 ### [Extra credits to contributors](https://github.com/alex-shpak/hugo-book/graphs/contributors)
 
-Contributions are welcome and I will review and consider pull requests.  
+Contributions are welcome and I will review and consider pull requests.
 Primary goals are:
 
 - Keep it simple.
