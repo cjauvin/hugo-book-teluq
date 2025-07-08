@@ -21,6 +21,10 @@
 
 </div>
 
+{{- if default true .Site.Params.BookSearch -}}
+  {{ partial "docs/prev-next" . }}
+{{ end -}}
+
 {{ $script := resources.Get "clipboard.js" | resources.Minify }}
 {{ with $script.Content }}
   <script>{{ . | safeJS }}</script>
