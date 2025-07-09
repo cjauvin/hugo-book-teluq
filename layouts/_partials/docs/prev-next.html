@@ -5,11 +5,13 @@
 
 {{ with .Site.GetPage $bookSection }}
   {{ $pages := partialCached "docs/prev-next-cache" .Pages }}
-  {{ $prev := $pages.Next $ }}
-  {{ $next := $pages.Prev $ }}
+  {{ $homepage := .Site.Home }}
+  {{ $allPages := slice $homepage | append $pages }}
+  {{ $prev := $allPages.Next $ }}
+  {{ $next := $allPages.Prev $ }}
 
   {{- if or $prev $next }}
-  <div class="flex flex-wrap justify-between">
+  <div class="flex flex-wrap {{ if and $prev $next }}justify-between{{ else if $next }}justify-end{{ else }}justify-start{{ end }}">
     {{ with $prev }}
       <a href="{{ .RelPermalink }}" class="flex align-center float-left book-icon">
         <img src="{{ "svg/backward.svg" | relURL }}" alt="Previous" title="{{ partial "docs/title" . }}" />
