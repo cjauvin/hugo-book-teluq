@@ -5,25 +5,29 @@
 
 {{ with .Site.GetPage $bookSection }}
   {{ $pages := partialCached "docs/prev-next-cache" .Pages }}
-  {{ $homepage := .Site.Home }}
-  {{ $allPages := slice $homepage | append $pages }}
-  {{ $prev := $allPages.Next $ }}
-  {{ $next := $allPages.Prev $ }}
+  {{/* Include the home page as the first page of the sequence */}}
+  {{ $pages = slice .Site.Home | append $pages }}
+  {{ $prev := $pages.Next $ }}
+  {{ $next := $pages.Prev $ }}
 
   {{- if or $prev $next }}
-  <div class="flex flex-wrap {{ if and $prev $next }}justify-between{{ else if $next }}justify-end{{ else }}justify-start{{ end }}">
+  <div class="flex flex-wrap justify-between">
+    <span>
     {{ with $prev }}
-      <a href="{{ .RelPermalink }}" class="flex align-center float-left book-icon">
-        <img src="{{ "svg/backward.svg" | relURL }}" alt="Previous" title="{{ partial "docs/title" . }}" />
+      <a href="{{ .RelPermalink }}" class="flex align-center">
+        <img src="{{ partial "docs/icon" "backward" }}" class="book-icon" alt="{{ partial "docs/text/i18n" "Backward" }}" />
         <span>{{ partial "docs/title" . }}</span>
       </a>
     {{ end }}
+    </span>
+    <span>
     {{ with $next }}
-      <a href="{{ .RelPermalink }}" class="flex align-center float-right book-icon">
+      <a href="{{ .RelPermalink }}" class="flex align-center">
         <span>{{ partial "docs/title" . }}</span>
-        <img src="{{ "svg/forward.svg" | relURL }}" alt="Next" title="{{ partial "docs/title" . }}" />
+        <img src="{{ partial "docs/icon" "forward" }}" class="book-icon" alt="{{ partial "docs/text/i18n" "Forward" }}" />
       </a>
     {{ end }}
+    </span>
   </div>
   {{ end -}}
 {{ end }}
